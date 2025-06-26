@@ -1,8 +1,12 @@
 "AI and Blockchain-Driven Platform for School Financial Enrollment".
 
+
+
 Introduction:
 
 This repository is for the upcoming thesis in CPEPRACDES1
+
+
 
 Things to do:
 
