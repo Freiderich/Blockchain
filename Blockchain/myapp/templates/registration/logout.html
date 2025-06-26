@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Logged Out</title>
+  <link rel="stylesheet" href="{% static 'myapp/logout.css' %}">
+</head>
+<body>
+  <div class="outer-cube">
+    <div class="outer-bg-top"><div class="outer-bg-inner"></div></div>
+    <div class="outer-bg-right"><div class="outer-bg-inner"></div></div>
+    <div class="outer-bg"><div class="outer-bg-inner"></div></div>
+
+    <div class="logout-box">
+      <h1>You have been logged out.</h1>
+      <p>Thank you for using the dashboard.</p>
+
+      <a href="{% url 'login' %}" class="block-cube block-cube-hover btn-cube">
+        <div class="bg-top"><div class="bg-inner"></div></div>
+        <div class="bg-right"><div class="bg-inner"></div></div>
+        <div class="bg"><div class="bg-inner"></div></div>
+        <div class="text">Log In Again</div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
