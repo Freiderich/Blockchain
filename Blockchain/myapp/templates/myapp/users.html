@@ -5,66 +5,84 @@
   <meta charset="UTF-8" />
   <title>SmartEnroll | Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
+
   <!-- Custom styles -->
   <link rel="stylesheet" href="{% static 'myapp/users.css' %}">
-  
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">SmartEnroll</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'users' %}">Dashboard</a>
-        </li>
-        <!-- You can add more nav-items here -->
-      </ul>
-      <span class="navbar-text me-3">
-        Logged in as <strong>{{ user.username }}</strong>
-      </span>
-      <form method="post" action="{% url 'logout' %}" class="d-inline">
+<!-- Header with Animated Navbar -->
+<div class="header">
+  <div class="header__logo">
+    <strong>SmartEnroll</strong>
+  </div>
+  <nav class="navbar">
+    <ul class="navbar__menu">
+      <li class="navbar__item">
+        <a href="{% url 'users' %}" class="navbar__link">
+          <i data-feather="home"></i>
+          <span>Home</span>
+        </a>
+      </li>
+        <li class="navbar__item">
+  <a href="#" class="navbar__link"><i data-feather="user"></i><span>Profile</span></a>
+</li>
+<li class="navbar__item">
+  <a href="#" class="navbar__link"><i data-feather="credit-card"></i><span>Payments</span></a>
+</li>
+<li class="navbar__item">
+  <a href="#" class="navbar__link"><i data-feather="file-text"></i><span>Enrollment</span></a>
+</li>
+<li class="navbar__item">
+  <a href="#" class="navbar__link"><i data-feather="bell"></i><span>Notices</span></a>
+</li>
+<li class="navbar__item">
+  <a href="#" class="navbar__link"><i data-feather="help-circle"></i><span>Help</span></a>
+</li>
+<li class="navbar__item">
+  <a href="#" class="navbar__link"><i data-feather="settings"></i><span>Settings</span></a>
+</li>
+
+    </ul>
+    <div class="navbar__auth">
+      <span class="navbar__user">Logged in as <strong>{{ user.username }}</strong></span>
+      <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-outline-info btn-sm">Logout</button>
+        <button type="submit" class="btn btn-logout">Logout</button>
       </form>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
+
 
 <!-- Main Container -->
 <div class="container py-4">
-
-  <!-- Header -->
   <div class="text-center mb-4">
     <h2>Welcome, {{ user.first_name|default:"Student" }}</h2>
     <p>SmartEnroll Finance Dashboard</p>
   </div>
-
-  <!-- Pay Online Section -->
-  <div class="card mb-4">
-    <div class="card-header">
-      Pay Online
-    </div>
-    <div class="card-body">
-      <p>You can settle your balance using any of the following methods:</p>
-      <ul>
-        <li><strong>GCash:</strong> 0917-XXX-XXXX (Account Name: School Finance)</li>
-        <li><strong>Bank Transfer:</strong> BDO 1234-5678-9012 (Account: School of IT)</li>
-        <li><strong>Credit/Debit Card:</strong> <a href="#">Pay via portal</a></li>
-      </ul>
-      <button class="btn mt-3">Upload Proof of Payment</button>
-    </div>
-  </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  feather.replace();
+
+  const menuItems = document.querySelectorAll(".navbar__item");
+  const speedline = document.createElement("div");
+  speedline.classList.add("speedline");
+  document.querySelector(".navbar__menu").appendChild(speedline);
+
+  menuItems.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const rect = item.getBoundingClientRect();
+      const parentRect = item.parentElement.getBoundingClientRect();
+      const offsetLeft = rect.left - parentRect.left;
+      speedline.style.left = `${offsetLeft + rect.width / 2}px`;
+    });
+  });
+</script>
+
 </body>
 </html>

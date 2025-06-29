@@ -1,3 +1,9 @@
+/* Root and Base Styles */
+:root {
+  --link-width: 10rem;
+  --primary: #00d4ff;
+}
+
 html, body {
   height: 100%;
   background-color: #212121 !important;
@@ -8,27 +14,13 @@ html, body {
   padding: 0;
 }
 
-/* Navigation Bar */
-.navbar {
-  background-color: #001f3f;
-  border-bottom: 2px solid #007bff;
-}
-.navbar-brand,
-.navbar-nav .nav-link {
-  color: #00d4ff;
-}
-.navbar-nav .nav-link:hover {
-  color: #ffffff;
-}
-
-
-/* Text elements - unified styling */
+/* Typography and Links */
 h1, h2, h3, p, li, a, button, span {
   color: #ffffff !important;
 }
 
 a {
-  color: #0ff !important;
+  color: rgb(0, 255, 255) !important;
   text-decoration: none;
 }
 
@@ -42,7 +34,7 @@ a:hover {
   color: #cccccc !important;
 }
 
-/* Card and layout */
+/* Card Layout */
 .card {
   background-color: #2e2e2e !important;
   border: 1px solid rgba(52, 9, 121, 1) !important;
@@ -62,7 +54,7 @@ a:hover {
   color: #ffffff !important;
 }
 
-/* Button styling */
+/* Buttons */
 .btn {
   background: transparent;
   border: 1px solid #0ff;
@@ -75,7 +67,7 @@ a:hover {
   color: #000;
 }
 
-
+/* Box Highlight */
 .box-highlight {
   position: relative;
   background-color: #212121;
@@ -87,7 +79,6 @@ a:hover {
   border: 1px solid rgba(0, 212, 255, 0.4);
 }
 
-/* Top gradient bar */
 .box-highlight::before {
   content: '';
   position: absolute;
@@ -104,4 +95,118 @@ a:hover {
   transform: skew(-45deg, 0);
 }
 
+/* ========== Animated Navbar Styles ========== */
 
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.header__logo strong {
+  font-size: 1.5rem;
+  color: #0ff;
+  font-family: monospace;
+  text-shadow: 1px 1px 3px rgba(0, 212, 255, 0.4);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.navbar__menu {
+  display: flex;
+  list-style: none;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar__item {
+  position: relative;
+}
+
+.navbar__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  width: var(--link-width);
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s ease all;
+}
+
+.navbar__link span {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  transition: 0.3s ease all;
+}
+
+.navbar__link:hover {
+  color: var(--primary);
+}
+
+.navbar__link:hover span {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.speedline {
+  position: absolute;
+  bottom: -20px;
+  width: 2px;
+  height: 4px;
+  background: var(--primary);
+  box-shadow:
+    0 -5px var(--primary),
+    0 -5px var(--primary),
+    0 0 3rem 0.5rem var(--primary),
+    2rem 0 0 rgba(255, 255, 255, 0.2),
+    -2rem 0 0 rgba(255, 255, 255, 0.2),
+    4rem 0 0 rgba(255, 255, 255, 0.2),
+    -4rem 0 0 rgba(255, 255, 255, 0.2),
+    6rem 0 0 rgba(255, 255, 255, 0.2),
+    -6rem 0 0 rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.navbar__auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 2rem;
+}
+
+.navbar__user {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid #0ff;
+  color: #0ff;
+  padding: 0.3rem 0.6rem;
+  font-family: monospace;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background: #0ff;
+  color: #000;
+}
